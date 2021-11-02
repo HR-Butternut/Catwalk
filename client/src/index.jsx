@@ -28,7 +28,6 @@ function App() {
     }
     axios(config)
       .then((resolveProductInfo) => {
-        console.log(resolveProductInfo.data);
         setProduct_id(product_id = resolveProductInfo.data.id) //maybe refactor out later
         setProductInfo(all_product_info = resolveProductInfo.data)
       })
