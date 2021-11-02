@@ -9,6 +9,7 @@ import Product_Id_Context from './context.jsx';
 
 function App() {
   var [product_id, setProduct_id] = useState(0);
+  var [all_product_info, setProductInfo] = useState(0);
 
 
   var singleItemRequest = (id) => {
@@ -28,7 +29,8 @@ function App() {
     axios(config)
       .then((resolveProductInfo) => {
         console.log(resolveProductInfo.data);
-          setProduct_id(product_id = resolveProductInfo.data.id)
+        setProduct_id(product_id = resolveProductInfo.data.id) //maybe refactor out later
+        setProductInfo(all_product_info = resolveProductInfo.data)
       })
       .catch((err) => {
         console.error(err);
@@ -43,7 +45,7 @@ function App() {
 
   return (
     <div>
-      <Product_Id_Context.Provider value={product_id}>
+      <Product_Id_Context.Provider value={all_product_info.id}>
         <Overview/>
         <Questions/>
         <Reviews/>
