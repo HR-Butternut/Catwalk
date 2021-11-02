@@ -27,7 +27,8 @@ function App() {
     }
     axios(config)
       .then((resolveProductInfo) => {
-          setProduct_id(product_id = resolveProductInfo.data.product_id)
+        console.log(resolveProductInfo.data);
+          setProduct_id(product_id = resolveProductInfo.data.id)
       })
       .catch((err) => {
         console.error(err);
@@ -35,7 +36,7 @@ function App() {
   }
 
   /* Use Effects second paramenter makes sure that it only runs when the app is mounted like component did mount */
-  
+
   useEffect(() => {
     singleItemRequest();
   }, [])

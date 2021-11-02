@@ -20,8 +20,8 @@ app.get('/starting_product_id', (req, res) => {
   };
   axios(config)
     .then((itemsResponse) => {
-      var default_product_id = { 'product_id': itemsResponse.data[0].id };
-      res.status(200).json((default_product_id))
+      var default_product_data = itemsResponse.data[0];
+      res.status(200).json((default_product_data))
     })
     .catch((error) => {
       console.log(error);
@@ -40,7 +40,8 @@ app.get('/singleItemRequest', (req, res) => {
   };
   axios(config)
     .then((productResponse) => {
-      var productInfo = { 'product_id': productResponse.data.id };
+      //var productInfo = { 'product_id': productResponse.data.id };
+      var productInfo = productResponse.data;
       //TODO: decide what else to include in the response body besides the id.  All of it?
       res.status(200).json((productInfo))
     })
@@ -50,7 +51,6 @@ app.get('/singleItemRequest', (req, res) => {
       res.status(500).send('There was a problem retrieving a default product_id')
     })
 });
-
 
 
 app.listen(PORT, () => {
